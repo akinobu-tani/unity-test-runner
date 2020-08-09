@@ -41,6 +41,7 @@ class Docker {
         --env TEST_MODE="${testMode}" \
         --env ARTIFACTS_PATH="${artifactsPath}" \
         --env CUSTOM_PARAMETERS="${customParameters}" \
+        --env UNITY_GITHUB_CREDENTIAL \
         --env HOME=/github/home \
         --env GITHUB_REF \
         --env GITHUB_SHA \

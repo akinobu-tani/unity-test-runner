@@ -36,6 +36,13 @@ case $TEST_MODE in
     ;;
 esac
 
+echo "Using github credential $UNITY_GITHUB_CREDENTIAL"
+
+# Set github credential for private repository using Unity Package Manager
+if [[ -n "$UNITY_GITHUB_CREDENTIAL" ]]; then
+  git config --global url."https://$UNITY_GITHUB_CREDENTIAL@github.com/".insteadOf "https://github.com/"
+fi
+
 # The following tests are 2019 mode (requires Unity 2019.2.11f1 or later)
 # Reference: https://docs.unity3d.com/2019.3/Documentation/Manual/CommandLineArguments.html
 
@@ -83,10 +90,10 @@ if [ $EDIT_MODE = true ]; then
       -testPlatform editmode \
       -testResults "$FULL_ARTIFACTS_PATH/editmode-results.xml" \
       $CUSTOM_PARAMETERS
-      
+
   # Catch exit code
   EDIT_MODE_EXIT_CODE=$?
-  
+
   # Print unity log output
   cat "$FULL_ARTIFACTS_PATH/editmode.log"
 
@@ -121,7 +128,7 @@ if [ $PLAY_MODE = true ]; then
       -testPlatform playmode \
       -testResults "$FULL_ARTIFACTS_PATH/playmode-results.xml" \
       $CUSTOM_PARAMETERS
-      
+
   # Catch exit code
   PLAY_MODE_EXIT_CODE=$?
 
